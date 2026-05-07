@@ -1,0 +1,27 @@
+services:
+  app:
+    image: lanbugsde/sharesecret:latest
+    ports:
+      - "7767:3000"
+    environment:
+      MONGODB_URI: mongodb://mongo:27017/sharesecret
+      PORT: 3000
+    depends_on:
+      mongo:
+        condition: service_healthy
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:7
+    command: ["mongod", "--quiet"]
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
