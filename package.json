@@ -1,0 +1,23 @@
+{
+  "name": "sharesecret",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "build:css": "tailwindcss -i ./src/app.css -o ./public/styles.css --minify",
+    "watch:css": "tailwindcss -i ./src/app.css -o ./public/styles.css --watch"
+  },
+  "private": true,
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.1",
+    "helmet": "^8.0.0",
+    "mongoose": "^9.6.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  }
+}
